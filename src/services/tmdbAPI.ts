@@ -1,0 +1,111 @@
+import IDataList from "../interfaces/DataList";
+import axiosInstance from "./axiosClient";
+import { Category, MovieType, TvType } from "../constants/movie";
+import IParams from "../interfaces/Params";
+import { IMovie, IMovieDetail } from "../interfaces/Movie";
+import { ITv, ITvDetail } from "../interfaces/Tv";
+import IVideo from "../interfaces/Video";
+import ICredit from "../interfaces/Cast";
+
+export async function getMoviesByType(
+  type: MovieType,
+  params: Partial<IParams>
+): Promise<IDataList<IMovie> | undefined> {
+  try {
+    const result = (await axiosInstance.get(
+      `/movie/${type}`,
+      params
+    )) as IDataList<IMovie>;
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getTvByType(
+  type: TvType,
+  params: Partial<IParams>
+): Promise<IDataList<ITv> | undefined> {
+  try {
+    const result = (await axiosInstance.get(
+      `/tv/${type}`,
+      params
+    )) as IDataList<ITv>;
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getVideos(
+  category: Category,
+  id: string
+): Promise<IDataList<IVideo> | undefined> {
+  try {
+    const result = (await axiosInstance.get(
+      `/${category}/${id}/videos`
+    )) as IDataList<IVideo>;
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function searchByType<T extends IMovie | ITv>(
+  category: Category,
+  params: IParams
+): Promise<IDataList<T> | undefined> {
+  try {
+    const result = (await axiosInstance.get(`/search/${category}`),
+    params) as IDataList<T>;
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getDetail<T extends IMovieDetail | ITvDetail>(
+  id: number,
+  category: Category,
+  params: IParams
+): Promise<T | undefined> {
+  try {
+    const result = (await axiosInstance.get(`/${category}/${id}`, params)) as T;
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getCredit(
+  id: number,
+  category: Category
+): Promise<ICredit | undefined> {
+  try {
+    const result = (await axiosInstance.get(
+      `/${category}/${id}/credits`
+    )) as ICredit;
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getSimilar<T extends IMovie | ITv>(
+  id: number,
+  category: Category
+): Promise<IDataList<T> | undefined> {
+  try {
+    const result = (await axiosInstance.get(
+      `/${category}/${id}/similar`
+    )) as IDataList<T>;
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "printWidth": 80,
+  "arrowParens": "avoid",
+  "trailingComma": "es5",
+  "endOfLine": "lf",
+  "jsxSingleQuote": true,
+  "singleQuote": false
+}
