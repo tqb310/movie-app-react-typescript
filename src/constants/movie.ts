@@ -1,6 +1,7 @@
 export enum Category {
   MOVIE = "movie",
   TV = "tv",
+  ALL = "all",
 }
 
 export enum MovieType {

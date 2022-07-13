@@ -12,10 +12,10 @@ export async function getMoviesByType(
   params: Partial<IParams>
 ): Promise<IDataList<IMovie> | undefined> {
   try {
-    const result = (await axiosInstance.get(
+    const result: IDataList<IMovie> = await axiosInstance.get(
       `/movie/${type}`,
       params
-    )) as IDataList<IMovie>;
+    );
     return result;
   } catch (error) {
     console.log(error);
@@ -27,10 +27,10 @@ export async function getTvByType(
   params: Partial<IParams>
 ): Promise<IDataList<ITv> | undefined> {
   try {
-    const result = (await axiosInstance.get(
+    const result: IDataList<ITv> = await axiosInstance.get(
       `/tv/${type}`,
       params
-    )) as IDataList<ITv>;
+    );
 
     return result;
   } catch (error) {
@@ -43,9 +43,9 @@ export async function getVideos(
   id: string
 ): Promise<IDataList<IVideo> | undefined> {
   try {
-    const result = (await axiosInstance.get(
+    const result: IDataList<IVideo> = await axiosInstance.get(
       `/${category}/${id}/videos`
-    )) as IDataList<IVideo>;
+    );
 
     return result;
   } catch (error) {
@@ -58,8 +58,8 @@ export async function searchByType<T extends IMovie | ITv>(
   params: IParams
 ): Promise<IDataList<T> | undefined> {
   try {
-    const result = (await axiosInstance.get(`/search/${category}`),
-    params) as IDataList<T>;
+    const result: IDataList<T> =
+      (await axiosInstance.get(`/search/${category}`), params);
     return result;
   } catch (error) {
     console.log(error);
@@ -72,7 +72,7 @@ export async function getDetail<T extends IMovieDetail | ITvDetail>(
   params: IParams
 ): Promise<T | undefined> {
   try {
-    const result = (await axiosInstance.get(`/${category}/${id}`, params)) as T;
+    const result: T = await axiosInstance.get(`/${category}/${id}`, params);
 
     return result;
   } catch (error) {
@@ -85,9 +85,9 @@ export async function getCredit(
   category: Category
 ): Promise<ICredit | undefined> {
   try {
-    const result = (await axiosInstance.get(
+    const result: ICredit = await axiosInstance.get(
       `/${category}/${id}/credits`
-    )) as ICredit;
+    );
 
     return result;
   } catch (error) {
@@ -102,6 +102,20 @@ export async function getSimilar<T extends IMovie | ITv>(
   try {
     const result = (await axiosInstance.get(
       `/${category}/${id}/similar`
+    )) as IDataList<T>;
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getTrending<T extends IMovie | ITv>(
+  category: Category
+): Promise<IDataList<T> | undefined> {
+  try {
+    const result = (await axiosInstance.get(
+      `/trending/${category}/day`
     )) as IDataList<T>;
 
     return result;

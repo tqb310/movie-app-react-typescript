@@ -31,3 +31,7 @@ export function getOriginalImage(
 ) {
   return `https://image.tmdb.org/t/p/${type}/${imgPath}`;
 }
+
+export function getEmbededMovie(videoId: number) {
+  return `https://2embed.org/embed/${videoId}`;
+}
