@@ -15,7 +15,7 @@ const SearchLazy = lazy(() => import("./pages/Search"));
 
 function App() {
   return (
-    <div className='bg-black w-screen h-screen'>
+    <div className='bg-black'>
       <Suspense fallback={<div>Loading...</div>}>
         <Navbar />
         <Routes>

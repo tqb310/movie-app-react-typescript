@@ -4,6 +4,9 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Router>

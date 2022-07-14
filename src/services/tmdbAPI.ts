@@ -14,7 +14,7 @@ export async function getMoviesByType(
   try {
     const result: IDataList<IMovie> = await axiosInstance.get(
       `/movie/${type}`,
-      params
+      { params }
     );
     return result;
   } catch (error) {
@@ -27,10 +27,9 @@ export async function getTvByType(
   params: Partial<IParams>
 ): Promise<IDataList<ITv> | undefined> {
   try {
-    const result: IDataList<ITv> = await axiosInstance.get(
-      `/tv/${type}`,
-      params
-    );
+    const result: IDataList<ITv> = await axiosInstance.get(`/tv/${type}`, {
+      params,
+    });
 
     return result;
   } catch (error) {
@@ -58,8 +57,10 @@ export async function searchByType<T extends IMovie | ITv>(
   params: IParams
 ): Promise<IDataList<T> | undefined> {
   try {
-    const result: IDataList<T> =
-      (await axiosInstance.get(`/search/${category}`), params);
+    const result: IDataList<T> = await axiosInstance.get(
+      `/search/${category}`,
+      { params }
+    );
     return result;
   } catch (error) {
     console.log(error);
@@ -72,7 +73,7 @@ export async function getDetail<T extends IMovieDetail | ITvDetail>(
   params: IParams
 ): Promise<T | undefined> {
   try {
-    const result: T = await axiosInstance.get(`/${category}/${id}`, params);
+    const result: T = await axiosInstance.get(`/${category}/${id}`, { params });
 
     return result;
   } catch (error) {

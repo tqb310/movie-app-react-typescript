@@ -6,15 +6,19 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  paramsSerializer: param =>
-    queryString.stringify({ ...param, api_key: import.meta.env.VITE_API_KEY }),
+  paramsSerializer: params => {
+    return queryString.stringify({
+      ...params,
+      api_key: import.meta.env.VITE_API_KEY,
+    });
+  },
 });
 
 axiosInstance.interceptors.request.use(config => {
   return config;
 });
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   response => {
     if (response && response.data) return response.data;
   },
@@ -25,11 +29,11 @@ axios.interceptors.response.use(
 
 export default axiosInstance;
 
-export function getOriginalImage(
+export function getImage(
   imgPath: string,
   type: "original" | "w500" = "original"
 ) {
-  return `https://image.tmdb.org/t/p/${type}/${imgPath}`;
+  return `https://image.tmdb.org/t/p/${type}${imgPath}`;
 }
 
 export function getEmbededMovie(videoId: number) {

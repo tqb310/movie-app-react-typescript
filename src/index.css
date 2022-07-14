@@ -1,25 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-/* @layer components {
-  .button {
-    @apply bg-blue-600 p-2 outline-none rounded-sm;
-    margin-top: 20px;
+@layer components {
+  /* LINK */
+  .link {
+    @apply after:absolute after:w-full after:h-[3px] after:duration-200 after:will-change-transform  after:left-0 after:top-full after:origin-center;
   }
-} */
+  .active-link {
+    @apply after:scale-100 after:opacity-100 after:bg-red-600;
+  }
+  .non-active-link {
+    @apply after:scale-0 after:opacity-0 after:bg-transparent;
+  }
+
+  /* BUTTON */
+  .btn {
+    @apply rounded-md px-4 py-2 transition-all duration-200;
+  }
+  .btn:focus,
+  .btn:hover {
+    @apply shadow-[0px_0px_8px];
+  }
+  .btn-primary {
+    @apply bg-red-600 text-white;
+  }
+  .btn-primary:focus,
+  .btn-primary:hover {
+    @apply shadow-[0px_0px_8px_red];
+  }
+  .btn-outline-primary {
+    @apply border-2 border-red-600 text-red-600;
+  }
+  .btn-outline-white {
+    @apply border-2 border-white text-white;
+  }
+
+  /* TRANSITION */
+  .slideDown-begin {
+    @apply duration-[1.3s] will-change-transform -translate-y-24 opacity-0;
+  }
+  .slideDown-end {
+    @apply translate-y-0 opacity-100;
+  }
+  .scaleUp-begin {
+    @apply duration-[1.3s] will-change-transform scale-0 opacity-0;
+  }
+  .scaleUp-end {
+    @apply scale-100 opacity-100;
+  }
+}
 
 body {
   margin: 0;
-  font-family: 'Lato', sans-serif,
-    sans-serif;
+  font-family: "Lato", sans-serif, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
