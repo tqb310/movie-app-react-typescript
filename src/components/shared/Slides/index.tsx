@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { IMovie } from "../../../interfaces/Movie";
 import * as tmdbAPI from "../../../services/tmdbAPI";
 import { MovieType, Category, TvType } from "../../../constants/movie";
@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import MovieCard from "../MovieCard";
 import { ITv } from "../../../interfaces/Tv";
+import { Link } from "react-router-dom";
 
 interface SlidesProps {
   title: string;
@@ -59,9 +60,11 @@ const Slides = ({ title, catergory, type }: SlidesProps) => {
     <div className='pb-6'>
       <div className='flex justify-between items-center py-5'>
         <h2 className='text-lg font-bold'>{title}</h2>
-        <button className='btn btn-outline-white py-1 rounded-xl text-sm'>
-          View more
-        </button>
+        <Link to={"/" + catergory}>
+          <button className='btn btn-outline-white py-1 rounded-xl text-sm'>
+            View more
+          </button>
+        </Link>
       </div>
       <Swiper
         modules={[Autoplay, Navigation]}
@@ -73,12 +76,8 @@ const Slides = ({ title, catergory, type }: SlidesProps) => {
         speed={500}
       >
         {data.map((item, index) => (
-          <SwiperSlide
-            key={index}
-            className='py-1 flex flex-col'
-            style={{ height: "auto" }}
-          >
-            <MovieCard {...item} />
+          <SwiperSlide key={index} style={{ height: "auto" }}>
+            <MovieCard {...item} category={catergory} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -86,4 +85,4 @@ const Slides = ({ title, catergory, type }: SlidesProps) => {
   );
 };
 
-export default Slides;
+export default memo(Slides);
