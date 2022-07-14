@@ -36,6 +36,10 @@ export function getImage(
   return `https://image.tmdb.org/t/p/${type}${imgPath}`;
 }
 
+export function getTrailer(key: string) {
+  return `https://youtube.com/embed/${key}`;
+}
+
 export function getEmbededMovie(videoId: number) {
   return `https://2embed.org/embed/${videoId}`;
 }

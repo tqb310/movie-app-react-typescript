@@ -43,9 +43,9 @@ export async function getVideos(
 ): Promise<IDataList<IVideo> | undefined> {
   try {
     const result: IDataList<IVideo> = await axiosInstance.get(
-      `/${category}/${id}/videos`
+      `/${category}/${id}/videos`,
+      { params: {} }
     );
-
     return result;
   } catch (error) {
     console.log(error);

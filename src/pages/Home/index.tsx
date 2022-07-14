@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as tmdbApi from "../../services/tmdbAPI";
 import { IMovie } from "../../interfaces/Movie";
 import { Category, MovieType } from "../../constants/movie";
-import { getImage } from "../../services/axiosClient";
+import { getImage, getTrailer } from "../../services/axiosClient";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { Modal, ModalContent, ModalTitle } from "../../components/shared/Modal";
@@ -11,6 +11,27 @@ const Home = () => {
   SwiperCore.use([Autoplay, Pagination]);
 
   const [topRated, setTopRated] = useState<Array<IMovie> | undefined>([]);
+  const [openModal, setOpenModal] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    iframeRef.current?.setAttribute("src", "");
+  };
+  const handleOpenModal = (movieId: string) => async (_: any) => {
+    try {
+      const video = await tmdbApi.getVideos(Category.MOVIE, movieId);
+      if (video && video.results?.length) {
+        iframeRef.current?.setAttribute(
+          "src",
+          getTrailer(video?.results[0].key)
+        );
+        setOpenModal(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -31,7 +52,7 @@ const Home = () => {
     <div className='text-white w-full'>
       <Swiper
         modules={[Autoplay, Pagination]}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         speed={1000}
         loop={true}
         slidesPerView={1}
@@ -88,7 +109,10 @@ const Home = () => {
                           <button className='btn btn-primary font-semibold min-w-[120px]'>
                             Watch now
                           </button>
-                          <button className='btn btn-outline-white min-w-[120px]'>
+                          <button
+                            className='btn btn-outline-white min-w-[120px]'
+                            onClick={handleOpenModal(item.id?.toString() || "")}
+                          >
                             Watch trailer
                           </button>
                         </div>
@@ -114,24 +138,20 @@ const Home = () => {
             </SwiperSlide>
           ))}
       </Swiper>
-      <Modal open={true}>
-        <ModalTitle>Title</ModalTitle>
-        <ModalContent>Content</ModalContent>
+      <Modal open={openModal} handleClose={handleCloseModal}>
+        <ModalTitle className='mb-2 font-semibold'>Trailer</ModalTitle>
+        <ModalContent>
+          <iframe
+            ref={iframeRef}
+            width={720}
+            height={405}
+            title='YouTube video player'
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          ></iframe>
+        </ModalContent>
       </Modal>
-      <style>
-        {`
-        .swiper-banner-bullet {
-          width: 16px !important;
-          height: 16px !important;
-          opacity: 0.5;
-          background-color: white;
-        }
-        .bg-red-700 {
-          background-color: rgb(153, 27, 27) !important;
-          opacity: 1;
-        }
-        `}
-      </style>
     </div>
   );
 };
