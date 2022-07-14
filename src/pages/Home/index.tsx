@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as tmdbApi from "../../services/tmdbAPI";
 import { IMovie } from "../../interfaces/Movie";
-import { Category, MovieType } from "../../constants/movie";
+import { Category, MovieType, TvType } from "../../constants/movie";
 import { getImage, getTrailer } from "../../services/axiosClient";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { Modal, ModalContent, ModalTitle } from "../../components/shared/Modal";
+import Slides from "../../components/shared/Slides";
 
 const Home = () => {
   SwiperCore.use([Autoplay, Pagination]);
 
-  const [topRated, setTopRated] = useState<Array<IMovie> | undefined>([]);
+  const [topRated, setTopRated] = useState<Array<IMovie>>([]);
   const [openModal, setOpenModal] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -40,7 +41,8 @@ const Home = () => {
           page: 1,
           language: "en-US",
         });
-        if (topRatedMovie) setTopRated(topRatedMovie.results);
+        if (topRatedMovie && topRatedMovie.results?.length)
+          setTopRated(topRatedMovie.results);
       } catch (error) {
         console.log(error);
       }
@@ -138,6 +140,20 @@ const Home = () => {
             </SwiperSlide>
           ))}
       </Swiper>
+      <div className='container'>
+        <Slides title='Trending Movies' catergory={Category.MOVIE} />
+        <Slides
+          title='Top Rated Movies'
+          catergory={Category.MOVIE}
+          type={MovieType.TOP_RATED}
+        />
+        <Slides title='Trending TV Shows' catergory={Category.TV} />
+        <Slides
+          title='Top Rated TV Shows'
+          catergory={Category.TV}
+          type={TvType.TOP_RATED}
+        />
+      </div>
       <Modal open={openModal} handleClose={handleCloseModal}>
         <ModalTitle className='mb-2 font-semibold'>Trailer</ModalTitle>
         <ModalContent>

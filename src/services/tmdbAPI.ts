@@ -101,9 +101,10 @@ export async function getSimilar<T extends IMovie | ITv>(
   category: Category
 ): Promise<IDataList<T> | undefined> {
   try {
-    const result = (await axiosInstance.get(
-      `/${category}/${id}/similar`
-    )) as IDataList<T>;
+    const result: IDataList<T> = await axiosInstance.get(
+      `/${category}/${id}/similar`,
+      { params: {} }
+    );
 
     return result;
   } catch (error) {
@@ -115,9 +116,10 @@ export async function getTrending<T extends IMovie | ITv>(
   category: Category
 ): Promise<IDataList<T> | undefined> {
   try {
-    const result = (await axiosInstance.get(
-      `/trending/${category}/day`
-    )) as IDataList<T>;
+    const result: IDataList<T> = await axiosInstance.get(
+      `/trending/${category}/day`,
+      { params: {} }
+    );
 
     return result;
   } catch (error) {
