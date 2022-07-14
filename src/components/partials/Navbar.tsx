@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  useEffect(() => {
+    const handleShrinkNavbar = () => {
+      if (window.scrollY > 199) {
+        document.querySelector("div.navbar")?.classList.add("shrink-navbar");
+      } else {
+        document.querySelector("div.navbar")?.classList.remove("shrink-navbar");
+      }
+    };
+    window.addEventListener("scroll", handleShrinkNavbar);
+    return () => {
+      window.removeEventListener("scroll", handleShrinkNavbar);
+    };
+  }, []);
+
   return (
-    <div className='w-full py-8 fixed z-20'>
-      <div className='container flex justify-between items-center '>
+    <div className='w-full fixed z-20 h-24 transition-all duration-300 navbar'>
+      <div className='container flex justify-between items-center h-full'>
         <h1 className='text-red-600 text-4xl font-black'>PHIMMOIFLIX</h1>
         <nav>
           <ul className='flex items-center gap-10'>

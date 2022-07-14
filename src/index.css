@@ -4,6 +4,11 @@
 @tailwind utilities;
 
 @layer components {
+  /* NAVBAR */
+  .shrink-navbar {
+    @apply bg-black h-16 !important;
+  }
+
   /* LINK */
   .link {
     @apply after:absolute after:w-full after:h-[3px] after:duration-200 after:will-change-transform  after:left-0 after:top-full after:origin-center;
