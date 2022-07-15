@@ -17,6 +17,9 @@ module.exports = {
       gridTemplateColumns: {
         fluid: "repeat(auto-fill, minmax(200px, 1fr))",
       },
+      backgroundImage: {
+        detailBackdrop: "linear-gradient(to top, black 50%, rgba(0,0,0,0.4))",
+      },
     },
   },
   plugins: [],

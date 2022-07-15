@@ -8,6 +8,7 @@ export interface IMovie extends Abstract {
   original_title: string;
   title: string;
   video: boolean;
+  name?: never;
 }
 
 export interface IMovieDetail extends IMovie {

@@ -87,7 +87,8 @@ export async function getCredit(
 ): Promise<ICredit | undefined> {
   try {
     const result: ICredit = await axiosInstance.get(
-      `/${category}/${id}/credits`
+      `/${category}/${id}/credits`,
+      { params: {} }
     );
 
     return result;

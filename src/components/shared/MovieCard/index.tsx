@@ -30,7 +30,7 @@ const MovieCard = <T extends MovieCardProps>(props: T) => {
       group-hover:after:h-full group-hover:after:z-10 group-hover:after:top-0 after:transition-all after:duration-300'
       >
         <img
-          src={getImage(props.poster_path || "", "w500")}
+          src={getImage(props.poster_path || props.backdrop_path || "", "w500")}
           alt={props.title || props.name}
           style={{ height: "100%" }}
           className='shadow-[0px_0px_5px] shadow-white/20 duration-1000 group-hover:scale-125'

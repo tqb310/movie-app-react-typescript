@@ -7,6 +7,7 @@ export interface ITv extends Abstract {
   genre_ids: Array<number>;
   name: string;
   original_name: string;
+  title?: never;
 }
 
 export interface ITvDetail extends ITv {
