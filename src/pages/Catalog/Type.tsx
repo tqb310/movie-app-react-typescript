@@ -6,7 +6,7 @@ import {
   MovieType,
   TvType,
 } from "../../constants/movie";
-import FooterBg from "../../assets/images/footer-bg.jpg";
+import FooterBg from "../../assets/images/backdrop.webp";
 import MovieGrid from "../../components/shared/MovieGrid";
 import { IMovie } from "../../interfaces/Movie";
 import { ITv } from "../../interfaces/Tv";

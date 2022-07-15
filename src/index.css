@@ -50,7 +50,7 @@
     @apply duration-[1.3s] will-change-transform -translate-y-24 opacity-0;
   }
   .slideDown-end {
-    @apply translate-y-0 opacity-100;
+    @apply translate-y-0 opacity-100 !important;
   }
   .scaleUp-begin {
     @apply duration-[1.3s] will-change-transform scale-0 opacity-0;

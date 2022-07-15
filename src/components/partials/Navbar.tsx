@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { SearchIcon } from "@heroicons/react/solid";
 
 const Navbar = () => {
   useEffect(() => {
@@ -15,14 +16,16 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleShrinkNavbar);
     };
   }, []);
-
+  const handleOpenSearchbar = () => {
+    document.querySelector("div.searchbar")?.classList.add("slideDown-end");
+  };
   return (
-    <div className='w-full fixed z-50 h-24 transition-all duration-300 navbar'>
-      <div className='container flex justify-between items-center h-full'>
+    <div className='w-full fixed z-40 h-24 transition-all duration-300 navbar'>
+      <div className='container flex items-center gap-10 h-full'>
         <Link to={"/"}>
           <h1 className='text-red-600 text-4xl font-black'>PHIMMOIFLIX</h1>
         </Link>
-        <nav>
+        <nav className='flex justify-between items-center grow'>
           <ul className='flex items-center gap-10'>
             <li className='text-white font-semibold text-lg  relative'>
               <NavLink
@@ -60,23 +63,27 @@ const Navbar = () => {
                 TV Shows
               </NavLink>
             </li>
-            <li>
-              <ul className='flex items-center'>
-                <li className=' '>
-                  <NavLink to='/sign-up'>
-                    <button className='bg-red-400 rounded-sm py-2 px-5 min-w-[40px] font-semibold text-sm '>
-                      Register
-                    </button>
-                  </NavLink>
-                </li>
-                <li className='text-white'>
-                  <NavLink to='/sign-in'>
-                    <button className='min-w-[40px] py-2 px-5 font-semibold text-sm'>
-                      Login
-                    </button>
-                  </NavLink>
-                </li>
-              </ul>
+          </ul>
+          <ul className='flex items-center gap-2'>
+            <li className='mr-5'>
+              <SearchIcon
+                onClick={handleOpenSearchbar}
+                className='w-8 h-8 text-white hover:scale-110 duration-200 will-change-transform'
+              />
+            </li>
+            <li className=' '>
+              <NavLink to='/sign-up'>
+                <button className='bg-red-400 rounded-sm py-2 px-5 min-w-[40px] font-semibold text-sm '>
+                  Register
+                </button>
+              </NavLink>
+            </li>
+            <li className='text-white'>
+              <NavLink to='/sign-in'>
+                <button className='min-w-[40px] py-2 px-5 font-semibold text-sm'>
+                  Login
+                </button>
+              </NavLink>
             </li>
           </ul>
         </nav>

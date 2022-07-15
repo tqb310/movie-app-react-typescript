@@ -4,6 +4,7 @@ import Footer from "./components/partials/Footer";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "./App.css";
+import Searchbar from "./components/partials/Searchbar";
 
 const HomeLazy = lazy(() => import("./pages/Home"));
 const AccountLazy = lazy(() => import("./pages/Account"));
@@ -25,6 +26,7 @@ function App() {
     <div className='bg-gradient-to-t from-black/90 to-black'>
       <Suspense fallback={<div>Loading...</div>}>
         <Navbar />
+        <Searchbar />
         <Routes>
           <Route path='/' element={<HomeLazy />} />
           <Route path='/sign-in' element={<SignInLazy />} />

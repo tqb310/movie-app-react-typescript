@@ -76,7 +76,7 @@ const Home = () => {
               {({ isActive }) => {
                 return (
                   <div
-                    className={`min-h-screen bg-center bg-cover`}
+                    className={`h-screen bg-center bg-cover`}
                     style={{
                       backgroundImage: `url('${getImage(
                         item.backdrop_path || ""
