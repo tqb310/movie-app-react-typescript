@@ -19,11 +19,11 @@ const Searchbar = () => {
     }
   };
   React.useEffect(() => {
-    const enterSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    function enterSearch(e: KeyboardEvent) {
       if (e.key === "Enter") {
         handleSearch();
       }
-    };
+    }
     inputRef.current?.addEventListener("keyup", enterSearch);
     return () => {
       inputRef.current?.removeEventListener("keyup", enterSearch);
