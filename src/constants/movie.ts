@@ -22,14 +22,12 @@ export const movieOptions = [
   { value: "upcoming", label: "Upcoming" },
   { value: "popular", label: "Popular" },
   { value: "top_rated", label: "Top Rated" },
-  { value: "trending", label: "Trending" },
 ];
 
 export const tvOptions = [
   { value: "on_the_air", label: "On The Air" },
   { value: "popular", label: "Popular" },
   { value: "top_rated", label: "Top Rated" },
-  { value: "trending", label: "Trending" },
 ];
 
 export const displayedLabel = (key: string) => {

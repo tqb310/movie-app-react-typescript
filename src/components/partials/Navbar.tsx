@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
   useEffect(() => {
@@ -17,9 +17,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className='w-full fixed z-20 h-24 transition-all duration-300 navbar'>
+    <div className='w-full fixed z-50 h-24 transition-all duration-300 navbar'>
       <div className='container flex justify-between items-center h-full'>
-        <h1 className='text-red-600 text-4xl font-black'>PHIMMOIFLIX</h1>
+        <Link to={"/"}>
+          <h1 className='text-red-600 text-4xl font-black'>PHIMMOIFLIX</h1>
+        </Link>
         <nav>
           <ul className='flex items-center gap-10'>
             <li className='text-white font-semibold text-lg  relative'>

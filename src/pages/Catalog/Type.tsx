@@ -15,6 +15,9 @@ import * as tmdbAPI from "../../services/tmdbAPI";
 const CatalogType = () => {
   const params = useParams();
   const [data, setData] = useState<Array<IMovie | ITv>>([]);
+  const [totalPage, setTotalPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -22,29 +25,36 @@ const CatalogType = () => {
           if (params.category === "movie") {
             const responseData = await tmdbAPI.getMoviesByType(
               params.typeOrId as MovieType,
-              {}
+              { page: currentPage }
             );
             if (responseData && responseData.results?.length)
-              setData(responseData?.results);
+              setData([...data, ...responseData?.results]);
+            setTotalPage(responseData?.total_pages || 0);
           } else {
             const responseData = await tmdbAPI.getTvByType(
               params.typeOrId as TvType,
-              {}
+              { page: currentPage }
             );
             if (responseData && responseData.results?.length)
-              setData(responseData?.results);
+              setData([...data, ...responseData?.results]);
+            setTotalPage(responseData?.total_pages || 0);
           }
         } else {
           if (params.category === "movie") {
             const responseData = await tmdbAPI.getTrending<IMovie>(
-              Category.MOVIE
+              Category.MOVIE,
+              { page: currentPage }
             );
             if (responseData && responseData.results?.length)
-              setData(responseData?.results);
+              setData([...data, ...responseData?.results]);
+            setTotalPage(responseData?.total_pages || 0);
           } else {
-            const responseData = await tmdbAPI.getTrending<ITv>(Category.TV);
+            const responseData = await tmdbAPI.getTrending<ITv>(Category.TV, {
+              page: currentPage,
+            });
             if (responseData && responseData.results?.length)
-              setData(responseData?.results);
+              setData([...data, ...responseData?.results]);
+            setTotalPage(responseData?.total_pages || 0);
           }
         }
       } catch (error) {
@@ -52,7 +62,11 @@ const CatalogType = () => {
       }
     };
     getData();
-  }, []);
+  }, [currentPage]);
+
+  const goNextPage = async () => {
+    setCurrentPage(currentPage + 1);
+  };
 
   return (
     <div>
@@ -65,6 +79,14 @@ const CatalogType = () => {
         </h2>
       </div>
       <MovieGrid data={data} category={params.category || ""} />
+      {currentPage < totalPage && (
+        <button
+          onClick={goNextPage}
+          className='btn btn-outline-white mx-auto block mb-10'
+        >
+          Load more
+        </button>
+      )}
     </div>
   );
 };

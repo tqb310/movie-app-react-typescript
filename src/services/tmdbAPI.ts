@@ -113,12 +113,13 @@ export async function getSimilar<T extends IMovie | ITv>(
 }
 
 export async function getTrending<T extends IMovie | ITv>(
-  category: Category
+  category: Category,
+  params: Partial<IParams>
 ): Promise<IDataList<T> | undefined> {
   try {
     const result: IDataList<T> = await axiosInstance.get(
       `/trending/${category}/day`,
-      { params: {} }
+      { params }
     );
 
     return result;

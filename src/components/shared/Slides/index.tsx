@@ -40,12 +40,16 @@ const Slides = ({ title, catergory, type }: SlidesProps) => {
         } else {
           if (catergory === Category.MOVIE) {
             const responseData = await tmdbAPI.getTrending<IMovie>(
-              Category.MOVIE
+              Category.MOVIE,
+              {}
             );
             if (responseData && responseData.results?.length)
               setData(responseData?.results);
           } else {
-            const responseData = await tmdbAPI.getTrending<ITv>(Category.TV);
+            const responseData = await tmdbAPI.getTrending<ITv>(
+              Category.TV,
+              {}
+            );
             if (responseData && responseData.results?.length)
               setData(responseData?.results);
           }
