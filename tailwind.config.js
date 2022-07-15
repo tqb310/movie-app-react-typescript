@@ -14,6 +14,9 @@ module.exports = {
         },
         center: true,
       },
+      gridTemplateColumns: {
+        fluid: "repeat(auto-fill, mimax(200px, 1fr))",
+      },
     },
   },
   plugins: [],

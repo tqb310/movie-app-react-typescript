@@ -9,7 +9,7 @@ import ICredit from "../interfaces/Cast";
 
 export async function getMoviesByType(
   type: MovieType,
-  params: Partial<IParams>
+  params?: Partial<IParams>
 ): Promise<IDataList<IMovie> | undefined> {
   try {
     const result: IDataList<IMovie> = await axiosInstance.get(
@@ -24,7 +24,7 @@ export async function getMoviesByType(
 
 export async function getTvByType(
   type: TvType,
-  params: Partial<IParams>
+  params?: Partial<IParams>
 ): Promise<IDataList<ITv> | undefined> {
   try {
     const result: IDataList<ITv> = await axiosInstance.get(`/tv/${type}`, {

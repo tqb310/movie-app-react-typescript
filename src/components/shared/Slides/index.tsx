@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 interface SlidesProps {
   title: string;
   catergory: Category;
-  type?: MovieType | TvType;
+  type: MovieType | TvType;
 }
 
 const Slides = ({ title, catergory, type }: SlidesProps) => {
@@ -22,7 +22,7 @@ const Slides = ({ title, catergory, type }: SlidesProps) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        if (type) {
+        if (type !== MovieType.TRENDING && type !== TvType.TRENDING) {
           if (catergory === Category.MOVIE) {
             const responseData = await tmdbAPI.getMoviesByType(
               type as MovieType,
@@ -60,7 +60,7 @@ const Slides = ({ title, catergory, type }: SlidesProps) => {
     <div className='pb-6'>
       <div className='flex justify-between items-center py-5'>
         <h2 className='text-lg font-bold'>{title}</h2>
-        <Link to={"/" + catergory}>
+        <Link to={"/" + catergory + "/" + type}>
           <button className='btn btn-outline-white py-1 rounded-xl text-sm'>
             View more
           </button>

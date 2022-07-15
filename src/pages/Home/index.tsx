@@ -141,13 +141,21 @@ const Home = () => {
           ))}
       </Swiper>
       <div className='container'>
-        <Slides title='Trending Movies' catergory={Category.MOVIE} />
+        <Slides
+          title='Trending Movies'
+          catergory={Category.MOVIE}
+          type={MovieType.TRENDING}
+        />
         <Slides
           title='Top Rated Movies'
           catergory={Category.MOVIE}
           type={MovieType.TOP_RATED}
         />
-        <Slides title='Trending TV Shows' catergory={Category.TV} />
+        <Slides
+          title='Trending TV Shows'
+          catergory={Category.TV}
+          type={MovieType.TRENDING}
+        />
         <Slides
           title='Top Rated TV Shows'
           catergory={Category.TV}

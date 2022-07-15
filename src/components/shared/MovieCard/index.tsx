@@ -4,7 +4,7 @@ import { IMovie } from "../../../interfaces/Movie";
 import { ITv } from "../../../interfaces/Tv";
 import { PlayIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
-import { Category } from "../../../constants/movie";
+import { Category, MovieType, TvType } from "../../../constants/movie";
 
 type MovieProps = IMovie & {
   title: string;
@@ -22,11 +22,11 @@ const MovieCard = <T extends MovieCardProps>(props: T) => {
   return (
     <Link
       to={`/${props.category}/${props.id}`}
-      className='relative py-1 flex flex-col h-full group cursor-pointer'
+      className='relative py-1 flex flex-col h-full group cursor-pointer text-white'
     >
       <PlayIcon className='hidden group-hover:block absolute h-20 w-h-20 z-30 top-1/3 left-1/2 -translate-x-1/2' />
       <figure
-        className='rounded-xl h-full mb-2 overflow-hidden group-hover:after:bg-black/50 group-hover:after:absolute group-hover:after:w-full 
+        className='relative rounded-xl h-full mb-2 overflow-hidden group-hover:after:bg-black/50 group-hover:after:absolute group-hover:after:w-full 
       group-hover:after:h-full group-hover:after:z-10 group-hover:after:top-0 after:transition-all after:duration-300'
       >
         <img
