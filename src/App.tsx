@@ -32,7 +32,7 @@ function App() {
           <Route path='/sign-in' element={<SignInLazy />} />
           <Route path='/sign-up' element={<SignUpLazy />} />
           <Route path='/account' element={<AccountLazy />} />
-          <Route path='/search' element={<SearchLazy />} />
+          <Route path='/search/:query' element={<SearchLazy />} />
           <Route path='/:category'>
             <Route index element={<CatalogLazy />} />
             <Route path=':typeOrId' element={<Navigator />} />

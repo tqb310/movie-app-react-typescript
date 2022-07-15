@@ -54,7 +54,7 @@ export async function getVideos(
 
 export async function searchByType<T extends IMovie | ITv>(
   category: Category,
-  params: IParams
+  params: Partial<IParams>
 ): Promise<IDataList<T> | undefined> {
   try {
     const result: IDataList<T> = await axiosInstance.get(
@@ -70,7 +70,7 @@ export async function searchByType<T extends IMovie | ITv>(
 export async function getDetail<T extends IMovieDetail | ITvDetail>(
   id: number,
   category: Category,
-  params: IParams
+  params: Partial<IParams>
 ): Promise<T | undefined> {
   try {
     const result: T = await axiosInstance.get(`/${category}/${id}`, { params });
