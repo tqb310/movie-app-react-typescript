@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import {
   Category,
@@ -11,24 +11,42 @@ import MovieGrid from "../../components/shared/MovieGrid";
 import { IMovie } from "../../interfaces/Movie";
 import { ITv } from "../../interfaces/Tv";
 import * as tmdbAPI from "../../services/tmdbAPI";
+import Select, { SingleValue } from "react-select";
+import { movieOptions, tvOptions } from "../../constants/movie";
 
-const Movie = () => {
+const Catalog = () => {
   const params = useParams();
+
+  const optionValues = useMemo(() => {
+    if (params.category === "movie") {
+      return movieOptions;
+    }
+    return tvOptions;
+  }, [params]);
+
   const [data, setData] = useState<Array<IMovie | ITv>>([]);
+  const [selectValue, setSelectValue] = useState<
+    SingleValue<{ value: string; label: string }>
+  >(optionValues[0]);
+
+  useEffect(() => {
+    setSelectValue(optionValues[0]);
+  }, [params]);
+
   useEffect(() => {
     const getData = async () => {
       try {
-        if (params.type !== "trending") {
+        if (selectValue?.value !== "trending") {
           if (params.category === "movie") {
             const responseData = await tmdbAPI.getMoviesByType(
-              params.type as MovieType,
+              selectValue?.value as MovieType,
               {}
             );
             if (responseData && responseData.results?.length)
               setData(responseData?.results);
           } else {
             const responseData = await tmdbAPI.getTvByType(
-              params.type as TvType,
+              selectValue?.value as TvType,
               {}
             );
             if (responseData && responseData.results?.length)
@@ -52,8 +70,13 @@ const Movie = () => {
       }
     };
     getData();
-  }, []);
+  }, [selectValue, params]);
 
+  const handleSelectChange = (
+    value: SingleValue<{ value: string; label: string }>
+  ) => {
+    setSelectValue(value);
+  };
   return (
     <div>
       <div className='relative' style={{ background: `url('${FooterBg}')` }}>
@@ -64,9 +87,17 @@ const Movie = () => {
             displayedLabel(params.category || "")}
         </h2>
       </div>
+      <div className='container'>
+        <Select
+          className='w-1/4 ml-auto mb-5'
+          value={selectValue}
+          options={optionValues}
+          onChange={handleSelectChange}
+        />
+      </div>
       <MovieGrid data={data} category={params.category || ""} />
     </div>
   );
 };
 
-export default Movie;
+export default Catalog;

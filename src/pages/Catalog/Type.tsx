@@ -12,7 +12,7 @@ import { IMovie } from "../../interfaces/Movie";
 import { ITv } from "../../interfaces/Tv";
 import * as tmdbAPI from "../../services/tmdbAPI";
 
-const Detail = () => {
+const CatalogType = () => {
   const params = useParams();
   const [data, setData] = useState<Array<IMovie | ITv>>([]);
   useEffect(() => {
@@ -69,4 +69,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default CatalogType;
