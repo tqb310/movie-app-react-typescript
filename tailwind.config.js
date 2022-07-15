@@ -15,7 +15,7 @@ module.exports = {
         center: true,
       },
       gridTemplateColumns: {
-        fluid: "repeat(auto-fill, mimax(200px, 1fr))",
+        fluid: "repeat(auto-fill, minmax(200px, 1fr))",
       },
     },
   },

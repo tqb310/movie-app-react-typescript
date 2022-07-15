@@ -2,17 +2,23 @@ import React, { Suspense, lazy } from "react";
 import Navbar from "./components/partials/Navbar";
 import Footer from "./components/partials/Footer";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./App.css";
 
 const HomeLazy = lazy(() => import("./pages/Home"));
 const AccountLazy = lazy(() => import("./pages/Account"));
-const MovieLazy = lazy(() => import("./pages/Movie"));
-const MovieDetailLazy = lazy(() => import("./pages/Movie/Detail"));
-const TvShowLazy = lazy(() => import("./pages/TvShow"));
-const TvShowDetailLazy = lazy(() => import("./pages/TvShow/Detail"));
+const CatalogLazy = lazy(() => import("./pages/Catalog"));
+const CatalogTypeLazy = lazy(() => import("./pages/Catalog/Type"));
+const DetailLazy = lazy(() => import("./pages/Detail"));
 const SignInLazy = lazy(() => import("./pages/SignIn"));
 const SignUpLazy = lazy(() => import("./pages/SignUp"));
 const SearchLazy = lazy(() => import("./pages/Search"));
+
+const Navigator = () => {
+  const params = useParams();
+  if (/^\d+$/.test(params.typeOrId || "")) return <DetailLazy />;
+  return <CatalogTypeLazy />;
+};
 
 function App() {
   return (
@@ -25,14 +31,10 @@ function App() {
           <Route path='/sign-up' element={<SignUpLazy />} />
           <Route path='/account' element={<AccountLazy />} />
           <Route path='/search' element={<SearchLazy />} />
-          <Route path='/:category/:type'>
-            <Route index element={<MovieLazy />} />
-            <Route path=':id' element={<MovieDetailLazy />} />
+          <Route path='/:category'>
+            <Route index element={<CatalogLazy />} />
+            <Route path=':typeOrId' element={<Navigator />} />
           </Route>
-          {/* <Route path='/tvshow'>
-            <Route index element={<TvShowLazy />} />
-            <Route path=':id' element={<TvShowDetailLazy />} />
-          </Route> */}
           <Route element={<Navigate to={"/"} />} />
         </Routes>
         <Footer />

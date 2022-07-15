@@ -11,7 +11,7 @@ interface MovieGridProps {
 
 const MovieGrid = ({ data, category }: MovieGridProps) => {
   return (
-    <div className='grid grid-cols-6 gap-5 container'>
+    <div className='grid grid-cols-fluid gap-5 container'>
       {data.length &&
         data.map((item, index) => (
           <MovieCard key={index} {...item} category={category as Category} />

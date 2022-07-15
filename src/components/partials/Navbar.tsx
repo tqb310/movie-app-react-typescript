@@ -26,7 +26,7 @@ const Navbar = () => {
               <NavLink
                 to='/'
                 className={props =>
-                  `hover:link hover:active-link link ${
+                  `hover:link hover:active-link  link ${
                     props.isActive ? "active-link" : "non-active-link"
                   }`
                 }
