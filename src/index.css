@@ -11,10 +11,10 @@
 
   /* LINK */
   .link {
-    @apply after:absolute after:w-full after:h-[3px] after:duration-200 after:will-change-transform  after:left-0 after:top-full after:origin-center;
+    @apply after:absolute after:w-full after:h-[3px] after:duration-500 after:will-change-transform  after:left-0 after:top-full after:origin-center;
   }
   .active-link {
-    @apply after:scale-100 after:opacity-100 after:bg-red-600;
+    @apply text-red-600 after:scale-100 after:opacity-100 after:bg-red-600;
   }
   .non-active-link {
     @apply after:scale-0 after:opacity-0 after:bg-transparent;
@@ -61,14 +61,22 @@
 
   /* SWIPER */
   .swiper-banner-bullet {
-    width: 16px !important;
-    height: 16px !important;
+    width: 8px !important;
+    height: 8px !important;
     opacity: 0.5 !important;
     background-color: white !important;
   }
   .bg-red-700 {
     background-color: rgb(153, 27, 27) !important;
     opacity: 1 !important;
+  }
+  @media screen and (min-width: 768px) {
+    .swiper-banner-bullet {
+      width: 16px !important;
+      height: 16px !important;
+      opacity: 0.5 !important;
+      background-color: white !important;
+    }
   }
 }
 

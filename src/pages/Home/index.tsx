@@ -7,10 +7,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { Modal, ModalContent, ModalTitle } from "../../components/shared/Modal";
 import Slides from "../../components/shared/Slides";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   SwiperCore.use([Autoplay, Pagination]);
-
+  const navigate = useNavigate();
   const [topRated, setTopRated] = useState<Array<IMovie>>([]);
   const [openModal, setOpenModal] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -33,7 +34,9 @@ const Home = () => {
       console.log(error);
     }
   };
-
+  const navigateToDetail = (id: string) => () => {
+    navigate("/movie/" + id);
+  };
   useEffect(() => {
     const getData = async () => {
       try {
@@ -108,7 +111,12 @@ const Home = () => {
                             (isActive ? " slideDown-end delay-[0.6s]" : "")
                           }
                         >
-                          <button className='btn btn-primary font-semibold min-w-[120px]'>
+                          <button
+                            onClick={navigateToDetail(
+                              item.id?.toString() || ""
+                            )}
+                            className='btn btn-primary font-semibold min-w-[120px]'
+                          >
                             Watch now
                           </button>
                           <button
@@ -121,7 +129,7 @@ const Home = () => {
                       </div>
                       <figure
                         className={
-                          "shrink-0 scaleUp-begin " +
+                          "shrink-0 scaleUp-begin hidden lg:block " +
                           (isActive ? "scaleUp-end" : "")
                         }
                       >
@@ -165,15 +173,16 @@ const Home = () => {
       <Modal open={openModal} handleClose={handleCloseModal}>
         <ModalTitle className='mb-2 font-semibold'>Trailer</ModalTitle>
         <ModalContent>
-          <iframe
-            ref={iframeRef}
-            width={720}
-            height={405}
-            title='YouTube video player'
-            frameBorder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen
-          ></iframe>
+          <div className='w-full h-[225px] sm:h-[324px] md:h-[432px] lg:h-[558px]'>
+            <iframe
+              ref={iframeRef}
+              className='w-full h-full object-contain'
+              title='YouTube video player'
+              frameBorder='0'
+              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+              allowFullScreen
+            ></iframe>
+          </div>
         </ModalContent>
       </Modal>
     </div>

@@ -35,18 +35,18 @@ const Searchbar = () => {
       className='searchbar fixed text-white z-50 top-0 left-0 right-0 bottom-0 -translate-y-full opacity-0 
     duration-300 will-change-transform'
     >
-      <div className='fixed w-full h-full bg-black/80'></div>
-      <XIcon
-        onClick={handleCloseSearchbar}
-        className='absolute top-5 right-5 h-8 w-8 text-white duration-200 hover:scale-110 will-change-transform'
-      />
-      <div className='relative container text-center py-20'>
+      <div className='fixed w-full h-full bg-black/90'></div>
+      <div className='relative text-center py-20 px-5'>
+        <XIcon
+          onClick={handleCloseSearchbar}
+          className='absolute top-5 right-5 h-8 w-8 text-white duration-200 hover:scale-110 will-change-transform'
+        />
         <h2 className='text-3xl font-bold pb-4'>
           Unlimited movies, TV <br />
           shows, and more.
         </h2>
         <h6 className='pb-8'>Watch anywhere. Cancel anytime.</h6>
-        <div className='w-[500px] mx-auto flex'>
+        <div className='w-full max-w-screen-sm mx-auto flex'>
           <input
             ref={inputRef}
             type='text'

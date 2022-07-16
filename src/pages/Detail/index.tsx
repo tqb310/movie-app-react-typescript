@@ -99,7 +99,7 @@ const TvShow = () => {
         </div>
       </div>
       <div className='text-white container p-16'>
-        <h2 className='text-2xl font-bold text-center pb-10'>Trailer</h2>
+        <h2 className='text-2xl font-bold text-center pb-10'>Video</h2>
         <iframe
           src={getEmbededMovie(Number(params.typeOrId))}
           frameBorder='0'
@@ -110,7 +110,7 @@ const TvShow = () => {
           title='YouTube video player'
           className='mx-auto'
         ></iframe>
-        <h2 className='text-2xl font-bold text-center pb-10'>Trailer</h2>
+        <h2 className='text-2xl font-bold text-center mt-20 pb-10'>Trailer</h2>
         <iframe
           src={getTrailer(video?.results?.[0].key || "")}
           frameBorder='0'

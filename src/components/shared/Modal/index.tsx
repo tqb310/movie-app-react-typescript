@@ -38,7 +38,7 @@ export const Modal = memo(
         <ModalContext.Provider value={{ open, handleClose }}>
           <div
             className={
-              "bg-black/90 rounded-md px-5 py-3 max-w-screen-lg scaleUp-begin duration-200 " +
+              "bg-black/90 rounded-md px-5 py-3 w-full max-w-screen-lg scaleUp-begin duration-200 " +
               (open ? "scaleUp-end " : "") +
               className
             }

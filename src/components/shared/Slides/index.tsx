@@ -72,12 +72,26 @@ const Slides = ({ title, catergory, type }: SlidesProps) => {
       </div>
       <Swiper
         modules={[Autoplay, Navigation]}
-        slidesPerView={6}
+        slidesPerView={1}
         spaceBetween={10}
         loop={true}
         navigation={true}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         speed={500}
+        breakpoints={{
+          576: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          992: {
+            slidesPerView: 4,
+          },
+          1200: {
+            slidesPerView: 6,
+          },
+        }}
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} style={{ height: "auto" }}>

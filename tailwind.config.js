@@ -4,6 +4,13 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        sm: "576px",
+        md: "768px",
+        lg: "992px",
+        xl: "1200px",
+        "2xl": "1400px",
+      },
       container: {
         screens: {
           DEFAULT: "100%",
@@ -13,6 +20,11 @@ module.exports = {
           xl: "1240px",
         },
         center: true,
+        padding: {
+          DEFAULT: "30px",
+          sm: "20px",
+          xl: "0px",
+        },
       },
       gridTemplateColumns: {
         fluid: "repeat(auto-fill, minmax(200px, 1fr))",

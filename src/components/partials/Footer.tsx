@@ -13,7 +13,7 @@ const Footer = () => {
         <h2 className='text-red-600 text-4xl font-black text-center mb-10'>
           PHIMMOIFLIX
         </h2>
-        <div className='text-white flex justify-around'>
+        <div className='text-white flex flex-col justify-center items-center lg:flex-row lg:justify-around text-center lg:text-start'>
           <ul>
             <li className='font-bold py-2 hover:text-red-600 duration-200'>
               <Link to={"/"}>Home</Link>
