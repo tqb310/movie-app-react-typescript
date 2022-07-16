@@ -53,7 +53,7 @@ const Search = () => {
     <div>
       <div className='relative' style={{ background: `url('${FooterBg}')` }}>
         <div className='absolute bg-gradient-to-t from-black to-black/40 w-full h-full'></div>
-        <h2 className='relative text-white text-3xl font-bold pt-28 pb-16 container'>
+        <h2 className='relative text-white text-xl lg:text-3xl font-bold pt-28 pb-16 container'>
           {results} results with "{params.query}"
         </h2>
       </div>

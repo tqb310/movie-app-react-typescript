@@ -58,24 +58,22 @@ const TvShow = () => {
   return (
     <div>
       <div
-        className='min-h-screen w-full bg-center bg-cover'
+        className='relative min-h-screen w-full bg-center bg-cover'
         style={{
           backgroundImage: `url('${getImage(detail.backdrop_path || "")}')`,
         }}
       >
-        <div className='bg-detailBackdrop h-full w-full absolute'></div>
-        <div className='relative container pt-52 flex gap-10'>
-          <figure className={"shrink-0 "}>
+        <div className='bg-detailBackdrop top-0 bottom-0 right-0 left-0 absolute'></div>
+        <div className='relative container pt-52 flex md:gap-10'>
+          <figure className='shrink-0'>
             <img
               src={getImage(detail.poster_path || "", "w500")}
               alt={detail.title || detail.name}
-              width={350}
-              height='auto'
-              className='rounded-xl'
+              className='rounded-xl hidden md:block md:w-[250px] lg:w-[350px]'
             />
           </figure>
           <div className='text-white'>
-            <h2 className='text-6xl font-black pb-10'>
+            <h2 className='text-4xl lg:text-6xl font-black pb-10'>
               {detail.title || detail.name}
             </h2>
             <ul className='flex gap-10 items-center pb-5'>
@@ -99,28 +97,30 @@ const TvShow = () => {
         </div>
       </div>
       <div className='text-white container p-16'>
-        <h2 className='text-2xl font-bold text-center pb-10'>Video</h2>
-        <iframe
-          src={getEmbededMovie(Number(params.typeOrId))}
-          frameBorder='0'
-          width={900}
-          height={506.25}
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-          allowFullScreen
-          title='YouTube video player'
-          className='mx-auto'
-        ></iframe>
+        <h2 className='text-2xl font-bold text-center pb-10'>
+          Enjoy the movie!
+        </h2>
+        <div className='mx-auto w-full max-w-screen-lg h-[225px] sm:h-[324px] md:h-[432px] lg:h-[558px]'>
+          <iframe
+            src={getEmbededMovie(Number(params.typeOrId))}
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            title='YouTube video player'
+            className='w-full h-full object-contain'
+          ></iframe>
+        </div>
         <h2 className='text-2xl font-bold text-center mt-20 pb-10'>Trailer</h2>
-        <iframe
-          src={getTrailer(video?.results?.[0].key || "")}
-          frameBorder='0'
-          width={900}
-          height={506.25}
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-          allowFullScreen
-          title='YouTube video player'
-          className='mx-auto'
-        ></iframe>
+        <div className='mx-auto w-full max-w-screen-lg h-[225px] sm:h-[324px] md:h-[432px] lg:h-[558px]'>
+          <iframe
+            src={getTrailer(video?.results?.[0].key || "")}
+            frameBorder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+            title='YouTube video player'
+            className='w-full h-full object-contain'
+          ></iframe>
+        </div>
       </div>
     </div>
   );

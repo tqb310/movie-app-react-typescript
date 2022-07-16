@@ -11,7 +11,7 @@
 
   /* LINK */
   .link {
-    @apply after:absolute after:w-full after:h-[3px] after:duration-500 after:will-change-transform  after:left-0 after:top-full after:origin-center;
+    @apply duration-300 after:absolute after:w-full after:h-[3px] after:duration-300 after:will-change-transform  after:left-0 after:top-full after:origin-center;
   }
   .active-link {
     @apply text-red-600 after:scale-100 after:opacity-100 after:bg-red-600;

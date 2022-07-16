@@ -26,19 +26,19 @@ const Cast = ({ id, category }: { id: number; category: string }) => {
     getData();
   }, []);
   return (
-    <div className='flex gap-5 pt-5'>
+    <div className='grid grid-cols-4 lg:grid-cols-6 gap-5 pt-5'>
       {cast?.cast.length &&
-        cast?.cast.slice(0, 8).map((item, index) => (
-          <div key={index}>
+        cast?.cast.slice(0, 12).map((item, index) => (
+          <div key={index} className='flex flex-col'>
             {" "}
-            <figure className={"pb-2"}>
+            <figure className={"pb-2 grow"}>
               <img
                 src={getImage(item.profile_path || "", "w500")}
                 alt={item.name}
-                className='rounded-xl'
+                className='rounded-xl h-full object-cover'
               />
             </figure>
-            <p>{item.name}</p>
+            <p className='min-h-[50px]'>{item.name}</p>
           </div>
         ))}
     </div>

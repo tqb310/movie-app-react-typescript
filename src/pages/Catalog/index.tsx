@@ -100,7 +100,7 @@ const Catalog = () => {
       </div>
       <div className='container'>
         <Select
-          className='w-1/4 ml-auto mb-5'
+          className='w-full lg:w-1/4 ml-auto mb-5'
           value={selectValue}
           options={optionValues}
           onChange={handleSelectChange}

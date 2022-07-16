@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { SearchIcon, MenuIcon, XIcon } from "@heroicons/react/solid";
 
 const Navbar = () => {
-  const [isOpenMenu, setOpenMenu] = useState(true);
+  const [isOpenMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
     const handleShrinkNavbar = () => {
