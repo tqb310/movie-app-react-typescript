@@ -2,11 +2,12 @@
 
 Free Online Movie Website
 
----
 
 - [Demo](#demo)
 - [Movie API](#movie-api)
 - [Technology](#main-technology-used)
+- [Features](#features)
+- [Screenshots](#screenshots-preview)
 
 ## Demo
 
