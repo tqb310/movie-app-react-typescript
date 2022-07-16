@@ -9,7 +9,7 @@ const Footer = () => {
       style={{ background: `url('${FooterBg}')` }}
     >
       <div className='absolute w-full h-full bg-black/75'></div>
-      <div className='relative container py-20'>
+      <div className='relative container pt-20 pb-5'>
         <h2 className='text-red-600 text-4xl font-black text-center mb-10'>
           PHIMMOIFLIX
         </h2>
@@ -54,6 +54,9 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+        <h4 className='text-white text-center mt-20'>
+          Copyright &copy; 2022 tqb310
+        </h4>
       </div>
     </div>
   );

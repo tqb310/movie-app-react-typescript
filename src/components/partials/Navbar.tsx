@@ -41,7 +41,10 @@ const Navbar = () => {
               isOpenMenu ? "slideDown-end" : ""
             } fixed top-0 left-0 right-0 bottom-0 bg-black/90 flex justify-center flex-col text-center gap-10 z-50 px-20`}
           >
-            <li className='text-white font-semibold text-lg relative'>
+            <li
+              onClick={handleToggleMenu}
+              className='text-white font-semibold text-lg relative'
+            >
               <NavLink
                 to='/'
                 className={props =>
@@ -53,7 +56,10 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className='text-white font-semibold text-lg relative'>
+            <li
+              onClick={handleToggleMenu}
+              className='text-white font-semibold text-lg relative'
+            >
               <NavLink
                 to='/movie'
                 className={props =>
@@ -65,7 +71,10 @@ const Navbar = () => {
                 Movies
               </NavLink>
             </li>
-            <li className='text-white font-semibold text-lg relative'>
+            <li
+              onClick={handleToggleMenu}
+              className='text-white font-semibold text-lg relative'
+            >
               <NavLink
                 to='/tv'
                 className={props =>
