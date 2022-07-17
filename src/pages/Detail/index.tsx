@@ -13,7 +13,7 @@ import {
 import * as tmdbAPI from "../../services/tmdbAPI";
 import Cast from "./Cast";
 
-const TvShow = () => {
+const Detail = () => {
   const params = useParams();
   const [detail, setDetail] = React.useState<IMovieDetail | ITvDetail | null>(
     null
@@ -54,7 +54,7 @@ const TvShow = () => {
     };
     getData();
   });
-  if (!detail) return <div></div>;
+  if (!detail) return <div className='min-h-screen'></div>;
   return (
     <div>
       <div
@@ -72,11 +72,11 @@ const TvShow = () => {
               className='rounded-xl hidden md:block md:w-[250px] lg:w-[350px]'
             />
           </figure>
-          <div className='text-white'>
+          <div className='text-white w-full'>
             <h2 className='text-4xl lg:text-6xl font-black pb-10'>
               {detail.title || detail.name}
             </h2>
-            <ul className='flex gap-10 items-center pb-5'>
+            <ul className='flex flex-wrap gap-x-10 gap-y-5 items-center pb-5'>
               {detail.genres.length &&
                 detail.genres.map((item, index) => (
                   <li
@@ -96,7 +96,7 @@ const TvShow = () => {
           </div>
         </div>
       </div>
-      <div className='text-white container p-16'>
+      <div className='text-white container py-16'>
         <h2 className='text-2xl font-bold text-center pb-10'>
           Enjoy the movie!
         </h2>
@@ -113,7 +113,7 @@ const TvShow = () => {
         <h2 className='text-2xl font-bold text-center mt-20 pb-10'>Trailer</h2>
         <div className='mx-auto w-full max-w-screen-lg h-[225px] sm:h-[324px] md:h-[432px] lg:h-[558px]'>
           <iframe
-            src={getTrailer(video?.results?.[0].key || "")}
+            src={getTrailer(video?.results?.[0]?.key || "")}
             frameBorder='0'
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
@@ -126,4 +126,4 @@ const TvShow = () => {
   );
 };
 
-export default TvShow;
+export default Detail;

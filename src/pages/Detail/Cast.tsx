@@ -26,7 +26,7 @@ const Cast = ({ id, category }: { id: number; category: string }) => {
     getData();
   }, []);
   return (
-    <div className='grid grid-cols-4 lg:grid-cols-6 gap-5 pt-5'>
+    <div className='grid grid-cols-4 lg:grid-cols-6 gap-5 pt-5 max-w-full'>
       {cast?.cast.length &&
         cast?.cast.slice(0, 12).map((item, index) => (
           <div key={index} className='flex flex-col'>

@@ -31,33 +31,17 @@ const Catalog = () => {
   }, [params]);
 
   useEffect(() => {
+    if (currentPage > 1) getData();
+  }, [currentPage]);
+
+  useEffect(() => {
     setCurrentPage(1);
+    setData(pre => []);
     getData();
   }, [selectValue, params]);
 
   const goNextPage = async () => {
-    try {
-      if (params.category === "movie") {
-        const responseData = await tmdbAPI.getMoviesByType(
-          selectValue?.value as MovieType,
-          { page: currentPage + 1 }
-        );
-        if (responseData && responseData.results?.length)
-          setData([...data, ...responseData?.results]);
-        setTotalPage(responseData?.total_pages || 0);
-      } else {
-        const responseData = await tmdbAPI.getTvByType(
-          selectValue?.value as TvType,
-          { page: currentPage + 1 }
-        );
-        if (responseData && responseData.results?.length)
-          setData([...data, ...responseData?.results]);
-        setTotalPage(responseData?.total_pages || 0);
-      }
-      setCurrentPage(currentPage + 1);
-    } catch (error) {
-      throw error;
-    }
+    setCurrentPage(currentPage + 1);
   };
 
   const getData = async () => {
@@ -65,18 +49,22 @@ const Catalog = () => {
       if (params.category === "movie") {
         const responseData = await tmdbAPI.getMoviesByType(
           selectValue?.value as MovieType,
-          {}
+          { page: currentPage }
         );
-        if (responseData && responseData.results?.length)
-          setData(responseData?.results);
+        if (responseData?.results?.length)
+          setData(pre => {
+            return [...pre, ...(responseData.results || [])];
+          });
         setTotalPage(responseData?.total_pages || 0);
       } else {
         const responseData = await tmdbAPI.getTvByType(
           selectValue?.value as TvType,
-          {}
+          { page: currentPage }
         );
-        if (responseData && responseData.results?.length)
-          setData(responseData?.results);
+        if (responseData?.results?.length)
+          setData(pre => {
+            return [...pre, ...(responseData.results || [])];
+          });
         setTotalPage(responseData?.total_pages || 0);
       }
     } catch (error) {

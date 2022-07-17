@@ -23,7 +23,7 @@ const Navigator = () => {
 
 function App() {
   return (
-    <div className='bg-gradient-to-t from-black/90 to-black'>
+    <div className='bg-gradient-to-t from-black/90 to-black min-h-screen'>
       <Suspense fallback={<div>Loading...</div>}>
         <Navbar />
         <Searchbar />
