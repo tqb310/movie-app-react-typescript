@@ -2,15 +2,16 @@
 
 Free Online Movie Website
 
----
 
 - [Demo](#demo)
 - [Movie API](#movie-api)
-- [Technology](#main-technology-used)
+- [Technology](#technology)
+- [Features](#features)
+- [Screenshots](#screenshots-preview)
 
 ## Demo
 
-Official website: [https://filmhot.live](https://filmhot.live)
+[https://movie-app-react-typescript.vercel.app](https://movie-app-react-typescript.vercel.app)
 
 ## Movie API
 
